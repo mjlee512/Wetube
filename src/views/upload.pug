@@ -1,7 +1,11 @@
 extends base
 
 block content
+    if errorMessage
+        span=errorMessage
     form(method="POST")
         // action="/videos/otherlink" 가능
-        input(name="title", placeholder="Title", required, type="text")
+        input(name="title", placeholder="Title", required, type="text", minlength=2, maxlength=25)
+        input(name="description", placeholder="Description", required, type="text", maxlength=300)
+        input(name="hashtags", placeholder="Hashtags seperated comma", required, type="text")
         input(type="submit", value="Upload Video")
