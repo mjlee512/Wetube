@@ -1,0 +1,9 @@
+extends base
+
+block content 
+    h3 #{video.views} #{video.views === 1 ? "view" : "views"}
+    //- 조건문 사용해 view가 1이면 단수 view string을 return
+    a(href=`${video.id}/edit`) Edit Video &rarr; 
+    //- rarr 오른쪽 화살표 larr 왼쪽 화살표
+    //- /edit은 내가 어디 있든 root에서 바로 /edit을 감. absolute url
+    //- edit은 현재 내 경로에서 /edit을 붙여서 이동함. relative url
