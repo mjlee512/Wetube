@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import rootRouter from './routers/rootRouter';
 import videoRouter from './routers/videoRouter';
 import userRouter from './routers/userRouter';
@@ -17,9 +18,10 @@ app.use(express.urlencoded({extended:true}));
 // session middleware는 Router 앞에 초기화 해야 한다.
 app.use(
     session({
-        secret: "Hello!",
-        resave: true,
-        saveUninitialized: true,
+        secret: process.env.COOKIE_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        store: MongoStore.create({mongoUrl: process.env.DB_URL}),
     })
 );
 
